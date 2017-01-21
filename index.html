@@ -1,0 +1,63 @@
+<!DOCTYPE HTML> 
+
+<html> 
+  <head> 
+    <title>Unicorn</title> 
+    
+    
+    <link rel="stylesheet" href="./ucr.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css"> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
+    <script type="text/javascript" src="./citrus.js"></script> 
+ 
+  </head> 
+
+	<body onload="drawVisualization();">
+    <h1>Intial Test</h1>
+
+    <!---Drawing Below --> 
+    <div class="graph-container">
+      <div id="mygraph"></div>
+    </div>
+    <!---End of Drawing --> 
+   
+
+    <!---Start of gauge chart --> 
+    <canvas id="canvas" width="25" height="25"> 
+
+
+
+
+
+
+    <!---End of gauge charts --> 
+    
+    <!---Post Request --> 
+    <!--
+		<?php
+			$service_url = "<Insert_URL>"; 
+			$curl = curl_init($service_url); 
+			$curl_post_data = array( 
+				'data' => 'data message', 
+				'data' => 'data message'
+			); 	
+				    
+		?>
+    <!-- 
+      1. Crime
+      2. Population
+      3. Span (Total gsf) 
+      4. Average Income
+      5. GDP
+      6. Average Education 
+      7. Average Age
+      8. Pop - 18 and under 
+      9. Pop - 19 - 50 
+      10. Pop 50 and up 
+      11. #Social Benifits 
+      12. Major Industries 
+		-->
+	</body>
+
+
+</html> 
