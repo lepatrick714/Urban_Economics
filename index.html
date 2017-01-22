@@ -51,6 +51,12 @@
 
 	<div id="visualization"></div>
 
+
+
+
+
+
+
 		<script type="text/javascript">
 			function CSVToArray( strData){
 					strDelimiter = (",");
@@ -94,12 +100,17 @@
 					return( arrData );
 			}
 
-			var cityData = CSVToArray("SB_Hacks_Data.csv"); 
-			var container = document.getElementById('visualization');
+			var cityData = CSVToArray();
+     
+      var container = document.getElementById('visualization');
 			
 			var groups = new vis.DataSet();
 			for(i=0; i<14; i++) {
-				groups.add[{id: i, content: "group"+i}];
+				var str = "group"+i;
+        groups.add[{
+          id: i,
+          content: str
+        }];
 			}
 
 			var year = 2017; 
@@ -109,11 +120,28 @@
 			var items = [];
 			for(i=0; i<120; i++) {
 				var date = year+'-'+month+'-'+day;
-				items.push({
+        items.push({
 					x: date, 
-					y: 90
+					y: 90,
+          group: 1
 				}); 
-				year++; 
+        items.push({ 
+          x: date, 
+          y: 140, 
+          group: 2
+        }); 
+        items.push({
+          x: date, 
+          y: 256, 
+          group: 3
+        });
+        items.push({
+          x: date, 
+          y:100, 
+          group: 4
+        });
+        
+        year++; 
 			}
 			
 			var dataset = new vis.DataSet(items);
@@ -127,9 +155,12 @@
 					},
 					orientation:'top',
 					start: '2017-01-21',
-					end: '2067-01-21'
+					end: '2070-01-21'
 			};
 			var graph2d = new vis.Graph2d(container, items, groups, options);
+      
+      //var date = year+'-'+month+'-'+day;
+      //graph2d.moveTo(date, 5); 
 
 			var dropdown = document.getElementById('dropdownID');
 			dropdown.onchange = update;
