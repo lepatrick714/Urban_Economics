@@ -31,9 +31,9 @@
 			<option value="new_york_city" selected="selected">New York City</option>
 			<option value="los_angeles">Los Angeles</option>
 			<option value="chicago">Chicago</option>
-			<option value="huston">Huston</option>
-			<option value="autin">Autin</option>
-			<option value="jacksonville">JacksonVille</option>
+			<option value="houston">Houston</option>
+			<option value="austin">Austin</option>
+			<option value="jacksonville">Jacksonville</option>
 			<option value="las_vegas">Las Vegas</option>
 			<option value="colorado_springs">Colorado Springs</option>
 			<option value="omaha">Omaha</option>
@@ -95,6 +95,7 @@
         }
 
         var cityData = CSVToArray("SB_Hacks_Data.csv");
+        console.log(cityData);
         var container = document.getElementById('visualization');
 
         var groups = new vis.DataSet();
