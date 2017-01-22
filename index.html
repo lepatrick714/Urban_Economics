@@ -17,7 +17,7 @@
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
-    <script src="./sliders.js"></script> 
+    <script src="./sliders.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -56,50 +56,6 @@
 	<div id="slider-1"></div>
 
 		<script type="text/javascript">
-			function CSVToArray( strData){
-					strDelimiter = (",");
-
-					var objPattern = new RegExp(
-							(
-									// Delimiters.
-									"(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-
-									// Quoted fields.
-									"(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-
-									// Standard fields.
-									"([^\"\\" + strDelimiter + "\\r\\n]*))"
-							),
-							"gi"
-							);
-					var arrData = [[]];
-					var arrMatches = null;
-					while (arrMatches = objPattern.exec( strData )){
-							var strMatchedDelimiter = arrMatches[ 1 ];
-							if (
-									strMatchedDelimiter.length &&
-									strMatchedDelimiter !== strDelimiter
-									){
-									arrData.push( [] );
-							}
-
-							var strMatchedValue;
-
-							if (arrMatches[ 2 ]){
-									strMatchedValue = arrMatches[ 2 ].replace(
-											new RegExp( "\"\"", "g" ),
-											"\""
-											);
-							} else {
-									strMatchedValue = arrMatches[ 3 ];
-							}
-							arrData[ arrData.length - 1 ].push( strMatchedValue );
-					}
-					return( arrData );
-			}
-
-			var cityData = CSVToArray();
-
       var container = document.getElementById('visualization');
 
 			var groups = new vis.DataSet();
