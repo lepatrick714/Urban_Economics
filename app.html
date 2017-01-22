@@ -8,6 +8,7 @@
     <link href="http://cdn.muicss.com/mui-0.9.9-rc1/css/mui.min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="http://cdn.muicss.com/mui-0.9.9-rc1/js/mui.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
@@ -29,7 +30,7 @@
     <div id="content-wrapper" class="mui--text-center">
         <div>
             <br>
-                <select id="dropdownID">
+            <select id="dropdownID">
     			<option value="overlap">overlap</option>
     			<option value="sideBySide" selected="selected">sideBySide</option>
     			<option value="stack">stack</option>
@@ -56,7 +57,88 @@
     			<option value="redlands">Redlands</option>
     		</select>
         </div>
+        <div id="visualization"></div>
+        <br><br>
+        <label for="start">Present Day</label>
+        <p>
+            <input type="text" id="date" style="border:0; color:#b9cd6d; font-weight:bold;">
+        </p>
+        <div max-width="50%">
+            <div id="slider-1" style="margin-left: 100;margin-left: 50px; margin-right: 100;margin-right: 50px;"></div>
+        </div>
     </div>
+
+    <script type="text/javascript">
+        var container = document.getElementById('visualization');
+
+        var groups = new vis.DataSet();
+        for (i = 0; i < 14; i++) {
+            var str = "group" + i;
+            groups.add[{
+                id: i,
+                content: str
+            }];
+        }
+
+        var year = 2017;
+        var month = 01;
+        var day = 01;
+
+        var items = [];
+        for (i = 0; i < 120; i++) {
+            var date = year + '-' + month + '-' + day;
+            items.push({
+                x: date,
+                y: 90,
+                group: 1
+            });
+            items.push({
+                x: date,
+                y: 140,
+                group: 2
+            });
+            items.push({
+                x: date,
+                y: 256,
+                group: 3
+            });
+            items.push({
+                x: date,
+                y: 100,
+                group: 4
+            });
+
+            year++;
+        }
+
+        var dataset = new vis.DataSet(items);
+        var options = {
+            style: 'bar',
+            stack: false,
+            barChart: {
+                width: 50,
+                align: 'center',
+                sideBySide: true
+            }, // align: left, center, right
+            drawPoints: false,
+            dataAxis: {
+                icons: true
+            },
+            orientation: 'top',
+            start: '2017-01-21',
+            end: '2070-01-21'
+        };
+        var graph2d = new vis.Graph2d(container, items, groups, options);
+
+        //var date = year+'-'+month+'-'+day;
+        //graph2d.moveTo(date, 5);
+
+        var options = {
+            stack: true
+        };
+        graph2d.setOptions(options);
+    </script>
+
     <footer>
         <div class="mui-container mui--text-center">
             Made with ♥ for SB Hacks III</a>
