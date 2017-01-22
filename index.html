@@ -1,63 +1,80 @@
-<!DOCTYPE HTML> 
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Graph2d or Basic Example</title>
 
-<html> 
-  <head> 
-    <title>Unicorn</title> 
-    
-    
-    <link rel="stylesheet" href="./ucr.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css"> 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
-    <script type="text/javascript" src="./citrus.js"></script> 
- 
-  </head> 
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
 
-	<body onload="drawVisualization();">
-    <h1>Intial Test</h1>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
 
-    <!---Drawing Below --> 
-    <div class="graph-container">
-      <div id="mygraph"></div>
-    </div>
-    <!---End of Drawing --> 
-   
+    <br>
+		Handle overlap: <select id="dropdownID">
+		<option value="overlap">overlap</option>
+		<option value="sideBySide" selected="selected">sideBySide</option>
+		<option value="stack">stack</option>
+	</select>
+</div>
+<br />
 
-    <!---Start of gauge chart --> 
-    <canvas id="canvas" width="25" height="25"> 
-
-
+<div id="visualization"></div>
 
 
 
 
-    <!---End of gauge charts --> 
-    
-    <!---Post Request --> 
-    <!--
-		<?php
-			$service_url = "<Insert_URL>"; 
-			$curl = curl_init($service_url); 
-			$curl_post_data = array( 
-				'data' => 'data message', 
-				'data' => 'data message'
-			); 	
-				    
-		?>
-    <!-- 
-      1. Crime
-      2. Population
-      3. Span (Total gsf) 
-      4. Average Income
-      5. GDP
-      6. Average Education 
-      7. Average Age
-      8. Pop - 18 and under 
-      9. Pop - 19 - 50 
-      10. Pop 50 and up 
-      11. #Social Benifits 
-      12. Major Industries 
-		-->
-	</body>
 
 
-</html> 
+<script type="text/javascript">
+	var container = document.getElementById('visualization');
+	var groups = new vis.DataSet();
+	groups.add({id: 0, content: "group0"})
+	groups.add({id: 1, content: "group1"})
+	
+	
+	var items = [
+		{x: '2014-06-13', y:30, group:0, crime}, 
+		{x: '2014-06-13', y:50, group:0, population},
+		{x: '2014-06-13', y:10, group:1, crime}, 
+		{x: '2014-06-13', y:30, group:1, population},
+	];
+
+
+	
+	/*	
+	for(i=2017; i<year; i++) {
+		
+	}
+	*/
+
+	var dataset = new vis.DataSet(items);
+	var options = {
+			style:'bar',
+			stack:false,
+			barChart: {width:50, align:'center', sideBySide:true}, // align: left, center, right
+			drawPoints: false,
+			dataAxis: {
+					icons:true
+			},
+			orientation:'top',
+			start: '2014-06-10',
+			end: '2014-06-18'
+	};
+	var graph2d = new vis.Graph2d(container, items, groups, options);
+
+	var dropdown = document.getElementById("dropdownID");
+	dropdown.onchange = update;
+
+	function update() {
+			var options = {stack:dropdown.value === 'stack',barChart:{sideBySide:dropdown.value === 'sideBySide'}};
+			graph2d.setOptions(options);
+	}
+
+</script>
+</body>
+</html>
