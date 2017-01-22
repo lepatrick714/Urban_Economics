@@ -13,13 +13,6 @@
         }
     </style>
 
-<<<<<<< HEAD
-=======
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	<link rel="stylesheet" href="/resources/demos/style.css">
-  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
->>>>>>> 9ef79917c801e5653f5bc6c617e00e1eb33c1567
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -43,16 +36,16 @@
 			<option value="huston">Huston</option>
 			<option value="autin">Autin</option>
 			<option value="jacksonville">JacksonVille</option>
-			<option value="las_vegas">Las Vegas</option>
-			<option value="colorado_springs">Colorado Springs</option>
-			<option value="omaha">Omaha</option>
-			<option value="miami">Miami</option>
-			<option value="jurupa_valley">Jurupa Valley</option>
-			<option value="riverside">Riverside</option>
-			<option value="santa_barbara">Santa Barbara</option>
-			<option value="irvine">Irvine</option>
-			<option value="redlands">Redlands</option>
-		</select>
+			<option value="las_vegas">Las Vegas</option> 
+			<option value="colorado_springs">Colorado Springs</option> 
+			<option value="omaha">Omaha</option> 
+			<option value="miami">Miami</option> 
+			<option value="jurupa_valley">Jurupa Valley</option> 
+			<option value="riverside">Riverside</option> 
+			<option value="santa_barbara">Santa Barbara</option> 
+			<option value="irvine">Irvine</option> 
+			<option value="redlands">Redlands</option> 
+		</select> 
 	</div>
 
 	<div id="visualization"></div>
@@ -103,9 +96,9 @@
 			}
 
 			var cityData = CSVToArray();
-
+     
       var container = document.getElementById('visualization');
-
+			
 			var groups = new vis.DataSet();
 			for(i=0; i<14; i++) {
 				var str = "group"+i;
@@ -115,37 +108,37 @@
         }];
 			}
 
-			var year = 2017;
-			var month = 01;
-			var day = 01;
+			var year = 2017; 
+			var month = 01; 
+			var day = 01; 
 
 			var items = [];
 			for(i=0; i<120; i++) {
 				var date = year+'-'+month+'-'+day;
         items.push({
-					x: date,
+					x: date, 
 					y: 90,
           group: 1
-				});
-        items.push({
-          x: date,
-          y: 140,
+				}); 
+        items.push({ 
+          x: date, 
+          y: 140, 
           group: 2
-        });
+        }); 
         items.push({
-          x: date,
-          y: 256,
+          x: date, 
+          y: 256, 
           group: 3
         });
         items.push({
-          x: date,
-          y:100,
+          x: date, 
+          y:100, 
           group: 4
         });
-
-        year++;
+        
+        year++; 
 			}
-
+			
 			var dataset = new vis.DataSet(items);
 			var options = {
 					style:'bar',
@@ -160,9 +153,9 @@
 					end: '2070-01-21'
 			};
 			var graph2d = new vis.Graph2d(container, items, groups, options);
-
+      
       //var date = year+'-'+month+'-'+day;
-      //graph2d.moveTo(date, 5);
+      //graph2d.moveTo(date, 5); 
 
 			var dropdown = document.getElementById('dropdownID');
 			dropdown.onchange = update;
