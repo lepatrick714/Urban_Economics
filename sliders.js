@@ -1,4 +1,4 @@
-$( function() {
-	$( "#slider" ).slider();
-} );
+$(function() { 
+    $("#slider-1").slider(); 
+}); 
 
