@@ -2,7 +2,9 @@
 <html>
 
 <head>
-    <title>Urban Economics Projections</title>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Urban Economics Projections</title>
 
     <style type="text/css">
         body,
@@ -11,6 +13,10 @@
         }
     </style>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -18,7 +24,7 @@
 <body>
 
     <div>
-        <br> Handle overlap: <select id="dropdownID">
+      <br> Handle overlap: <select id="dropdownID">
 			<option value="overlap">overlap</option>
 			<option value="sideBySide" selected="selected">sideBySide</option>
 			<option value="stack">stack</option>
@@ -47,10 +53,6 @@
 	</div>
 
 	<div id="visualization"></div>
-
-
-
-
 
 
 
@@ -168,122 +170,5 @@
 			}
 
 		</script>
-	</body>
-			<option value="las_vegas">Las Vegas</option>
-			<option value="colorado_springs">Colorado Springs</option>
-			<option value="omaha">Omaha</option>
-			<option value="miami">Miami</option>
-			<option value="jurupa_valley">Jurupa Valley</option>
-			<option value="riverside">Riverside</option>
-			<option value="santa_barbara">Santa Barbara</option>
-			<option value="irvine">Irvine</option>
-			<option value="redlands">Redlands</option>
-		</select>
-    </div>
-
-    <div id="visualization"></div>
-
-    <script type="text/javascript">
-        function CSVToArray(strData) {
-            strDelimiter = (",");
-
-            var objPattern = new RegExp(
-                (
-                    // Delimiters.
-                    "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-
-                    // Quoted fields.
-                    "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-
-                    // Standard fields.
-                    "([^\"\\" + strDelimiter + "\\r\\n]*))"
-                ),
-                "gi"
-            );
-            var arrData = [
-                []
-            ];
-            var arrMatches = null;
-            while (arrMatches = objPattern.exec(strData)) {
-                var strMatchedDelimiter = arrMatches[1];
-                if (
-                    strMatchedDelimiter.length &&
-                    strMatchedDelimiter !== strDelimiter
-                ) {
-                    arrData.push([]);
-                }
-
-                var strMatchedValue;
-
-                if (arrMatches[2]) {
-                    strMatchedValue = arrMatches[2].replace(
-                        new RegExp("\"\"", "g"),
-                        "\""
-                    );
-                } else {
-                    strMatchedValue = arrMatches[3];
-                }
-                arrData[arrData.length - 1].push(strMatchedValue);
-            }
-            return (arrData);
-        }
-
-        var cityData = CSVToArray("SB_Hacks_Data.csv");
-        var container = document.getElementById('visualization');
-
-        var groups = new vis.DataSet();
-        for (i = 0; i < 14; i++) {
-            groups.add[{
-                id: i,
-                content: "group" + i
-            }];
-        }
-
-        var year = 2017;
-        var month = 01;
-        var day = 01;
-
-        var items = [];
-        for (i = 0; i < 120; i++) {
-            var date = year + '-' + month + '-' + day;
-            items.push({
-                x: date,
-                y: 90
-            });
-            year++;
-        }
-
-        var dataset = new vis.DataSet(items);
-        var options = {
-            style: 'bar',
-            stack: false,
-            barChart: {
-                width: 50,
-                align: 'center',
-                sideBySide: true
-            }, // align: left, center, right
-            drawPoints: false,
-            dataAxis: {
-                icons: true
-            },
-            orientation: 'top',
-            start: '2017-01-21',
-            end: '2067-01-21'
-        };
-        var graph2d = new vis.Graph2d(container, items, groups, options);
-
-        var dropdown = document.getElementById('dropdownID');
-        dropdown.onchange = update;
-
-        function update() {
-            var options = {
-                stack: dropdown.value === 'stack',
-                barChart: {
-                    sideBySide: dropdown.value === 'sideBySide'
-                }
-            };
-            graph2d.setOptions(options);
-        }
-    </script>
 </body>
 </html>
