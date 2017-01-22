@@ -13,24 +13,16 @@
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+                  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.js"></script>
     <script src="./sliders.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.0/vis.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
-    <div>
-        <br> Handle overlap: <select id="dropdownID">
-			<option value="overlap">overlap</option>
-			<option value="sideBySide" selected="selected">sideBySide</option>
-			<option value="stack">stack</option>
-			</select>
-    </div>
-    <br />
 
     <div>
         <br> Cities Select: <select id="dropdowncityID">
@@ -120,18 +112,11 @@
         //var date = year+'-'+month+'-'+day;
         //graph2d.moveTo(date, 5);
 
-        var dropdown = document.getElementById('dropdownID');
-        dropdown.onchange = update;
+        var options = {
+          stack: true
+        };
+        graph2d.setOptions(options);
 
-        function update() {
-            var options = {
-                stack: dropdown.value === 'stack',
-                barChart: {
-                    sideBySide: dropdown.value === 'sideBySide'
-                }
-            };
-            graph2d.setOptions(options);
-        }
     </script>
 </body>
 
