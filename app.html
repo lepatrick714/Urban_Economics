@@ -60,11 +60,11 @@
         <div id="visualization"></div>
         <br><br>
         <label for="start">Present Day</label>
-        <p>
-            <input type="text" id="date" style="border:0; color:#b9cd6d; font-weight:bold;">
-        </p>
+        <input type="text" id="slidevalue" style = "border:0; color:#2196F3; font-weight:bold;">
+        <br><br>
         <div max-width="50%">
             <div id="slider-1" style="margin-left: 100;margin-left: 50px; margin-right: 100;margin-right: 50px;"></div>
+
         </div>
     </div>
 
@@ -126,7 +126,15 @@
             },
             orientation: 'top',
             start: '2017-01-21',
-            end: '2070-01-21'
+            end: '2070-01-21',
+            // zoomable: false,
+            // zoomMin: 2000,
+            zoomMax: 409968000000,
+            width: '100%',
+            moveable: false,
+            minHeight: "500px"
+            // hides dates above graph
+            // showMinorLabels: false
         };
         var graph2d = new vis.Graph2d(container, items, groups, options);
 
